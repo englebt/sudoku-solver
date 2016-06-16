@@ -1,3 +1,5 @@
+# Originally published by Peter Norvig: http://norvig.com/sudopy.shtml
+
 def cross(A, B):
   """Cross product of elements in A and B."""
   return [a+b for a in A for b in B]
