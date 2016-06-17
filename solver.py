@@ -5,9 +5,8 @@ def cross(A, B):
   return [a+b for a in A for b in B]
 
 # Define our variables
-digits = '123456789'
 rows = 'ABCDEFGHI'
-cols = digits
+cols = digits = '123456789'
 squares = cross(rows, cols)
 unitlist = ([cross(rows, c) for c in cols] +
             [cross(r, cols) for r in rows] +
