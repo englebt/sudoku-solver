@@ -1,3 +1,5 @@
+# reimplementation from newcoder.io tutorial: http://newcoder.io/gui/
+
 from Tkinter import Tk, Canvas, Frame, Button, BOTH, TOP, BOTTOM
 
 MARGIN = 20
