@@ -88,7 +88,14 @@ def display(values):
 ########## Search ##########
 
 def solve(grid):
-  search(parse_grid(grid))
+  values = search(parse_grid(grid))
+
+  solved_grid = ""
+  for r in rows:
+    for c in cols:
+      solved_grid += values[r+c]
+
+  return solved_grid
 
 def search(values):
   """Using depth-first search and propoagation, try all possible values."""
