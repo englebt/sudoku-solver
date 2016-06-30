@@ -66,8 +66,8 @@ class SudokuGame(object):
 
     for i in xrange(9):
       for j in xrange(9):
-        self.puzzle[i][j] = int(solved_grid[i+j])
-
+        self.puzzle[i][j] = int(solved_grid[9*i+j])
+      
   def check_win(self):
     for row in xrange(9):
       if not self.__check_row(row):
@@ -252,7 +252,7 @@ class SudokuUI(Frame):
     self.__draw_cursor()
 
 if __name__ == '__main__':
-  with open('blank.sudoku', 'r') as boards_file:
+  with open('hard.sudoku', 'r') as boards_file:
     game = SudokuGame(boards_file)
     game.start()
 

@@ -89,7 +89,9 @@ def display(values):
 
 def solve(grid):
   values = search(parse_grid(grid))
-
+  # DEBUG: The following displays the solved grid in the console.
+  #display(values)
+  
   solved_grid = ""
   for r in rows:
     for c in cols:
