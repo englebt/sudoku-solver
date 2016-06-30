@@ -1,6 +1,7 @@
 # reimplementation from newcoder.io tutorial: http://newcoder.io/gui/
 
-from Tkinter import Tk, Canvas, Frame, Button, BOTH, TOP, BOTTOM
+from Tkinter import *
+import solver as sol
 
 MARGIN = 20
 SIDE = 50
@@ -55,6 +56,18 @@ class SudokuGame(object):
       for j in xrange(9):
         self.puzzle[i].append(self.start_puzzle[i][j])
 
+  def solve(self):
+    grid = ""
+    for i in xrange(9):
+      for j in xrange(9):
+        grid += str(self.puzzle[i][j])
+
+    solved_grid = sol.solve(grid)
+
+    for i in xrange(9):
+      for j in xrange(9):
+        self.puzzle[i][j] = int(solved_grid[i+j])
+
   def check_win(self):
     for row in xrange(9):
       if not self.__check_row(row):
@@ -106,18 +119,30 @@ class SudokuUI(Frame):
   def __initUI(self):
     self.parent.title("Sudoku Solver")
     self.pack(fill=BOTH, expand=1)
+
     self.canvas = Canvas(
       self,
       width=WIDTH,
       height=HEIGHT
     )
-    self.canvas.pack(fill=BOTH, side=TOP)
+    #self.canvas.pack(fill=BOTH, side=TOP)
+    self.canvas.grid(row=0)
+
+    solve_button = Button(
+      self,
+      text="Solve",
+      command=self.__solve
+    )
+    #solve_button.pack(fill=X, side=BOTTOM)
+    solve_button.grid(row=1)
+
     clear_button = Button(
       self,
       text="Clear board",
       command=self.__clear_board
     )
-    clear_button.pack(fill=BOTH, side=BOTTOM)
+    #clear_button.pack(fill=X, side=BOTTOM)
+    clear_button.grid(row=2)
 
     self.__draw_grid()
     self.__draw_puzzle()
@@ -221,8 +246,13 @@ class SudokuUI(Frame):
     self.canvas.delete("victory")
     self.__draw_puzzle()
 
+  def __solve(self):
+    self.game.solve()
+    self.__draw_puzzle()
+    self.__draw_cursor()
+
 if __name__ == '__main__':
-  with open('debug.sudoku', 'r') as boards_file:
+  with open('blank.sudoku', 'r') as boards_file:
     game = SudokuGame(boards_file)
     game.start()
 
