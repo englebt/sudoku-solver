@@ -24,7 +24,7 @@ def parse_grid(grid):
   values = dict((s, digits) for s in squares)
   for s,d in grid_values(grid).items():
     if d in digits and not assign(values, s, d):
-      return false
+      return False
 
   return values
 
