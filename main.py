@@ -66,8 +66,8 @@ class SudokuGame(object):
 
     for i in xrange(9):
       for j in xrange(9):
-        self.puzzle[i][j] = int(solved_grid[i+j])
-
+        self.puzzle[i][j] = int(solved_grid[9*i+j])
+      
   def check_win(self):
     for row in xrange(9):
       if not self.__check_row(row):
