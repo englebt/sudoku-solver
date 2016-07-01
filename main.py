@@ -252,7 +252,7 @@ class SudokuUI(Frame):
     self.__draw_cursor()
 
 if __name__ == '__main__':
-  with open('hard.sudoku', 'r') as boards_file:
+  with open('blank.sudoku', 'r') as boards_file:
     game = SudokuGame(boards_file)
     game.start()
 
